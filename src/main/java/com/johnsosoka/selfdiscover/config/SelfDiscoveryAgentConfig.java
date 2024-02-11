@@ -1,7 +1,7 @@
 package com.johnsosoka.selfdiscover.config;
 
-import com.johnsosoka.selfdiscover.agent.SelfDiscoverAgent;
-import com.johnsosoka.selfdiscover.agent.SolverAgent;
+import com.johnsosoka.selfdiscover.agent.SelfDiscovery;
+import com.johnsosoka.selfdiscover.agent.Solving;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.service.AiServices;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,8 @@ public class SelfDiscoveryAgentConfig {
      * @return
      */
     @Bean
-    public SelfDiscoverAgent selfDiscoveryAgent(ChatLanguageModel chatLanguageModel) {
-        return AiServices.builder(SelfDiscoverAgent.class)
+    public SelfDiscovery selfDiscoveryAgent(ChatLanguageModel chatLanguageModel) {
+        return AiServices.builder(SelfDiscovery.class)
                 .chatLanguageModel(chatLanguageModel)
                 .build();
     }
@@ -32,8 +32,8 @@ public class SelfDiscoveryAgentConfig {
      * @return
      */
     @Bean
-    public SolverAgent solverAgent(ChatLanguageModel chatLanguageModel) {
-        return AiServices.builder(SolverAgent.class)
+    public Solving solverAgent(ChatLanguageModel chatLanguageModel) {
+        return AiServices.builder(Solving.class)
                 .chatLanguageModel(chatLanguageModel)
                 .build();
     }

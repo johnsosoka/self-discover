@@ -1,6 +1,5 @@
 package com.johnsosoka.selfdiscover.agent;
 
-import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * "SELF-DISCOVER: Large Language Models Self-Compose Reasoning Structures"
  * https://arxiv.org/pdf/2402.03620.pdf
  */
-public interface SelfDiscoverAgent {
+public interface SelfDiscovery {
 
     /**
      * Selects reasoning modules that will help solve a task.
@@ -30,7 +29,7 @@ public interface SelfDiscoverAgent {
             "AVAILABLE REASONING MODULES:",
             "{{allReasoningModules}}",
     })
-    public List<String> selectModules(@V("task") String task,
+    public String selectModules(@V("task") String task,
                                       @V("allReasoningModules") List<String> allReasoningModules);
 
     /**
@@ -47,8 +46,8 @@ public interface SelfDiscoverAgent {
             "SELECTED REASONING MODULES:",
             "{{selectedReasoningModules}}",
     })
-    public List<String> adaptModules(@V("task") String task,
-                                     @V("selectedReasoningModules") List<String> selectedReasoningModules);
+    public String adaptModules(@V("task") String task,
+                                     @V("selectedReasoningModules") String selectedReasoningModules);
 
     /**
      * Implement a reasoning structure for solvers to follow step-by-step to arrive at a correct solution.
@@ -66,5 +65,5 @@ public interface SelfDiscoverAgent {
             "{{adaptedReasoningModules}}",
     })
     public String implement(@V("task") String task,
-                            @V("adaptedReasoningModules") List<String> adaptedReasoningModules);
+                            @V("adaptedReasoningModules") String adaptedReasoningModules);
 }
